@@ -11,7 +11,7 @@ public class ExplicitExample
 	  Scanner sc = new Scanner(System.in);
 	  System.out.println("Enter the Value of double:");
  	  double d = sc.nextDouble();
-    int i	= (int)d;
+          int i	= (int)d;
 	  float f = (float)d;
  
  System.out.println("Before double conversion the value of X is : "+d);
