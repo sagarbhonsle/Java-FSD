@@ -1,2 +1,24 @@
 //Java program to convert data types (Explicit Type Casting)
 
+import java.util.Scanner;
+public class ExplicitExample
+{
+	
+ public static void main(String[] args)
+ 
+ {
+ 	
+	  Scanner sc = new Scanner(System.in);
+	  System.out.println("Enter the Value of double:");
+ 	  double d = sc.nextDouble();
+    int i	= (int)d;
+	  float f = (float)d;
+ 
+ System.out.println("Before double conversion the value of X is : "+d);
+ System.out.println("After conversion the int value of y is : "+i);
+ System.out.println("After conversion the float value of z is : "+f);
+ 
+ }
+
+} 
+
