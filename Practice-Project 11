@@ -1,0 +1,50 @@
+// Java Program to Implement Inner class //
+
+package sample;
+
+public class OuterClass {   // Outer class
+	
+
+	   
+	    private int outerVariable = 10;   // Member variable in the outer class
+
+	   
+	    public class InnerClass {  // Inner class
+	       
+	        private int innerVariable = 20;    // Member variable in the inner class
+
+	        // Inner class method
+
+	        public void display() {
+	            System.out.println("Outer Variable: " + outerVariable);
+	            System.out.println("Inner Variable: " + innerVariable);
+	        }
+	    }
+
+	    // Another inner class
+
+	    public class AnotherInnerClass {
+	       
+	        private String message = "Hello from AnotherInnerClass!";      // Member variable in another inner class
+
+	        // Another inner class method
+
+	        public void showMessage() {
+	            System.out.println(message);
+	        }
+	    }
+
+	    public static void main(String[] args) {
+	       
+	        OuterClass outerObject = new OuterClass();                                                        // Creating an instance of the outer class
+	       
+	        OuterClass.InnerClass innerObject = outerObject.new InnerClass();                                // Creating an instance of the inner class
+
+	        innerObject.display();                                                                          // Calling the display method of the inner class
+
+	        OuterClass.AnotherInnerClass anotherInnerObject = outerObject.new AnotherInnerClass(); 	        // Creating an instance of another inner class
+	       
+	        anotherInnerObject.showMessage();                                                               // Calling the showMessage method of the another inner class
+	    }
+	}
+
