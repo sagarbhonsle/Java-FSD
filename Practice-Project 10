@@ -1,0 +1,48 @@
+// Java Program to Implement Method Calling Function //
+
+package sample;
+
+public class Methods {
+
+	    // Method without parameters and return type
+
+	    public static void message() {
+	        System.out.println(" Good Evening..!");
+	    }
+
+	    // Method with parameters and return type
+
+	    public static int addNum(int a, int b) {
+	        return a + b;
+	    }
+
+	    // Method with parameters and void return type
+
+	    public static void displaySum(int x, int y) {
+	        int sum = x + y;
+	        System.out.println("Sum of Numbers : " + sum);
+	    }
+
+	    public static void main(String[] args) {
+	        // Calling a method without parameters and return type
+	        message();
+
+	        // Calling a method with parameters and return type
+
+	        int result = addNum(5, 7);
+	        System.out.println("Result of add Numbers: " + result);
+
+	       
+	        displaySum(10, 20);                                       // Calling a method with parameters and void return type
+	        
+	       
+	        displaySum(30, addNum(8, 4));                            // Calling a method with an expression as an argument
+	        
+	        // Storing the result of a method in a variable and then using it
+
+	        int anotherResult = addNum(15, 25);
+	        displaySum(anotherResult, 5);
+	    }
+	}
+
+
