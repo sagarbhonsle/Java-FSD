@@ -1,0 +1,41 @@
+// Java Program to Implement Java Collections //
+
+package sample;
+import java.util.*;
+
+public class Collections {
+
+
+	    public static void main(String[] args) {
+	        
+	        ArrayList<String> myArrayList = new ArrayList<>();      // Create an ArrayList of Strings
+
+	        // Adding elements to the ArrayList
+
+	        myArrayList.add("Java");
+	        myArrayList.add("Python");
+	        myArrayList.add("C++");
+
+	        // Displaying elements using enhanced for loop
+
+	        System.out.println("Elements in the ArrayList:");
+	        for (String language : myArrayList) {
+	            System.out.println(language);
+	        }
+
+	        myArrayList.add(1, "JavaScript");         	          // Adding an element at a specific index
+
+
+	       
+	        myArrayList.remove("C++");                            // Removing an element
+
+	        // Displaying elements using Iterator
+
+	        System.out.println("\nUpdated elements in the ArrayList:");
+	        Iterator<String> iterator = myArrayList.iterator();
+	        while (iterator.hasNext()) {
+	            System.out.println(iterator.next());
+	        }
+	    }
+	}
+
