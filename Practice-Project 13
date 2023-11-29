@@ -1,0 +1,36 @@
+// Java Program to Validate the Email //
+
+package sample;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+public class Email {
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Enter an email address: ");
+	        String email = scanner.nextLine();
+
+	        if (isValidEmail(email)) {
+	            System.out.println("The email address is valid.");
+	        } else {
+	            System.out.println("The email address is invalid.");
+	            scanner.close();
+	        }
+	    }
+
+	    private static boolean isValidEmail(String email) {
+	        // Define the regular expression pattern for a basic email validation
+
+	        String emailRegex = "^[a-z A-Z 0-9_+&*-] + (?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+	       
+	        Pattern pattern = Pattern.compile(emailRegex);   // Compile the pattern
+
+	        Matcher matcher = pattern.matcher(email);       // Create a matcher object
+
+	        return matcher.matches();                      // Return true if the email matches the pattern, false otherwise
+	        
+	    }
+	}
