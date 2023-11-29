@@ -1,0 +1,27 @@
+// Java Program to converet a String to StringBuffer and StringBuilder //
+
+package sample;
+
+public class StringConversion {
+	
+	    public static void main(String[] args) {
+	        
+	    	
+	        String original = "Hello, World!"; // Create a string
+
+	       
+	        System.out.println("Original String: " + original);                         // Display the original string
+
+	        StringBuffer stringBuffer = new StringBuffer(original);                    // Convert string to StringBuffer
+
+	       
+	        System.out.println("StringBuffer: " + stringBuffer);                     // Display the converted StringBuffer
+
+	       
+	        StringBuilder stringBuilder = new StringBuilder(original + original );  // Convert string to StringBuilder
+
+	        
+	        System.out.println("StringBuilder: " + stringBuilder);                 // Display the converted StringBuilder
+	    }
+	}
+
