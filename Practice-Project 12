@@ -1,0 +1,57 @@
+// Java Program to Implement the Map // 
+
+package sample;
+import java.util.HashMap;
+import java.util.*;
+
+public class MapExp {
+	
+public static void main(String[] args) {
+		        
+		        Map<String, Integer> playerrank = new HashMap<>();  // Creating a HashMap
+
+		        // Adding entries to the map
+
+		        playerrank.put("Virat", 1);
+		        playerrank.put("Rohit", 2);
+		        playerrank.put("Rahul", 3);
+		        playerrank.put("Gill",  4);
+
+		        // Displaying the initial map
+
+		        System.out.println("initial rank of player:");
+		        displayMap(playerrank);
+   
+		        playerrank.put("Rohit", 6);   // Updating a value in the map
+
+		        // Displaying the map after update
+
+		        System.out.println("\n Player rank after Update:");
+		        displayMap(playerrank);
+
+		        playerrank.remove("Rahul");     // Removing an entry from the map
+
+		        // Displaying the map after removal
+
+		        System.out.println("\n Player rank after Removal:");
+		        displayMap(playerrank);
+
+		        // Checking if a key is present in the map
+
+		        String searchKey = "Virat";
+		        if (playerrank.containsKey(searchKey)) {
+		            System.out.println("\n" + searchKey + "'s rank: " + playerrank.get(searchKey));
+		        } else {
+		            System.out.println("\n" + searchKey + " not found in the map.");
+		        }
+		    }
+
+		    private static void displayMap(Map<String, Integer> map) {
+		        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+		            System.out.println(entry.getKey() + ": " + entry.getValue());
+		        }
+		    }
+
+
+	}
+
