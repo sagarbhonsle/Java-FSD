@@ -1,0 +1,55 @@
+// Java Program to Implement Regular Expression //
+
+package sample;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegularExp {
+
+	    public static void main(String[] args) {
+	        // Matching a specific pattern
+
+	        String input1 = "Sagar8123";
+	        String pattern1 = "Sagar@123"; // Only letters are allowed
+
+	        System.out.println("Section 1:");
+	        System.out.println("Input: " + input1);
+	        System.out.println("Pattern: " + pattern1);
+	        System.out.println("Matches: " + isMatch(input1, pattern1));
+
+	        // Extracting numbers from a string
+
+	        String input2 = "I am staying in #234 street num 5 ";
+	        String pattern2 = "\\d+"; // Match one or more digits (0-9)
+
+	        System.out.println("\nSection 2:");
+	        System.out.println("Input: " + input2);
+	        System.out.println("Pattern: " + pattern2);
+	        System.out.println("Extracted Numbers: " + extractNumbers(input2, pattern2));
+	    }
+
+	    // Function to check if a string matches a pattern
+
+	    private static boolean isMatch(String input, String pattern) {
+	        Pattern p = Pattern.compile(pattern);
+	        Matcher m = p.matcher(input);
+	        return m.matches();
+	    }
+
+	    // Function to extract numbers from a string using a pattern
+
+	    private static String extractNumbers(String input, String pattern) {
+	        Pattern p = Pattern.compile(pattern);
+	        Matcher m = p.matcher(input);
+
+	        StringBuilder result = new StringBuilder();
+	        while (m.find()) {
+	            result.append(m.group()).append(" ");
+	        }
+
+	        return result.toString().trim();
+	    }
+	}
+
+
