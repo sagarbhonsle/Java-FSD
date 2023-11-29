@@ -1,0 +1,42 @@
+// Java Program to Implement Array // 
+
+package sample;
+
+public class ArrayImplementation {
+	
+	    public static void main(String[] args) {
+	       
+	        int[] numbers = {1, 2, 3, 4, 5};                                   // Declare and initialize an array of integers
+
+	        // Display the elements of the array
+
+	        System.out.println("Elements of the array:");
+	        for (int i = 0; i < numbers.length; i++) {
+	            System.out.println("Element " + i + ": " + numbers[i]);
+	        }
+
+	        // Calculate the sum of the elements
+
+	        int sum = 0;
+	        for (int i = 0; i < numbers.length; i++) {
+	            sum += numbers[i];
+	        }
+
+	        
+	        System.out.println("Sum of the elements: " + sum);                // Display the sum
+
+	        
+	        numbers[2] = 10;                                                 // Update an element in the array where index is 2
+
+	        // Display the updated array
+
+	        System.out.println("Updated array after changing element at index 2:");
+	        for (int i = 0; i < numbers.length; i++)
+	        {
+	            System.out.println("Element " + i + ": " + numbers[i]);
+	            }
+	        
+	    }
+	}
+
+
