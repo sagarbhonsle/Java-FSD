@@ -1,0 +1,52 @@
+// Java Program to Demonstrate the Solution for Diamond Problem //
+
+
+
+package sample;
+
+
+interface Animal {                       //Common interface
+ void makeSound(); 
+}
+
+interface Mammal extends Animal {       //Interface inheriting from Animal
+ void giveBirth();
+}
+
+
+interface Bird extends Animal {        //Another interface inheriting from Animal
+ void layEggs();
+}
+
+
+class Whale implements Mammal, Bird {  //Concrete class implementing both Mammal and Bird interfaces
+
+ @Override
+ public void makeSound() {
+     System.out.println("whale makes a unique sound");
+ }
+
+ @Override
+ public void giveBirth() {
+     System.out.println("whale gives birth");
+ }
+
+ @Override
+ public void layEggs() {
+     System.out.println("whale lays eggs");
+ }
+}
+
+public class DiamondProblemDemo {
+ public static void main(String[] args) {
+    
+     Whale whale = new Whale();            // Creating an instance of Whale
+
+     // Calling methods from interfaces
+
+     whale.makeSound();
+     whale.giveBirth();
+     whale.layEggs();
+ }
+}
+
