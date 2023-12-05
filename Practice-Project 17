@@ -1,0 +1,50 @@
+// Java Program to Demonstrate Exception Handling //
+
+package sample;
+import java.util.Scanner;
+
+public class ExceptionHandling {
+	public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+         
+          System.out.println("\n Enter two numbers for division:");
+
+	        // Get user input for two numbers
+
+	        System.out.print("\n Enter numerator: ");
+	        int numerator = scanner.nextInt();
+
+	        System.out.print("\n Enter denominator: ");
+	        int denominator = scanner.nextInt();
+
+	        // Perform division and handle potential exceptions
+
+	        try {
+	            int result = divideNumbers(numerator, denominator);
+	            System.out.println("\n Result of division: " + result);
+	        } 
+
+catch (ArithmeticException e) {
+	            System.out.println("\n Error: " + e.getMessage());
+	        }
+
+catch (Exception e) {
+	            System.out.println("\n An unexpected error occurred: " + e.getMessage());
+	        } 
+
+finally {
+	            // This block will always be executed, whether an exception occurs or not
+	            System.out.println("Finally block executed.");
+	        }
+	    }
+
+	    // Method to perform division and throw ArithmeticException if denominator is zero
+
+	    private static int divideNumbers(int numerator, int denominator) {
+	        if (denominator == 0) {
+	            throw new ArithmeticException("Cannot divide by zero.");
+	        }
+	        return numerator / denominator;
+	    }
+	}
+
