@@ -1,0 +1,53 @@
+// Java Program to Implement Thread by Extending it and Implementing Runnable Interface //
+
+package sample;
+
+public class ThreadDemo {
+
+	    public static void main(String[] args) {
+
+	        // Thread using Thread class extension
+
+	        MyThread thread1 = new MyThread();
+	        thread1.setName("Thread1"); // Set thread name
+	        thread1.start(); // Start the thread
+
+	        // Thread using Runnable interface
+
+	        Runnable runnable = new MyRunnable();
+	        Thread thread2 = new Thread(runnable);
+	        thread2.setName("Thread2");
+	        thread2.start();
+
+	        // Main thread execution
+
+	        System.out.println("Main thread is running...");
+
+	        try {
+	            thread1.join();                      // Wait for thread1 to finish
+	            thread2.join();                     // Wait for thread2 to finish
+	        } catch (InterruptedException e) {
+	            System.err.println("Error: " + e.getMessage());
+	        }
+
+	        System.out.println("All threads done.");
+	    }
+	}
+
+	class MyThread extends Thread {                  // Extends from thread class 
+
+	    @Override
+	    public void run() {
+	        System.out.println("Thread created by extending Thread class is running: " + Thread.currentThread().getName());
+	    }
+	}
+
+	class MyRunnable implements Runnable {
+
+	    @Override
+	    public void run() {
+	        System.out.println("Thread created by implementing Runnable interface is running: " + Thread.currentThread().getName());
+	    }
+	}
+
+
