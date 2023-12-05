@@ -1,0 +1,111 @@
+//  Java Program to demonstrate the uses of classes, objects, and the object-oriented pillars in Java //
+
+package sample;
+
+	
+
+	class Shape {                              // Class representing a basic shape
+	    
+	    private String color;                 // Encapsulation: Private instance variable
+ 
+	
+	    public Shape(String color) {         // Constructor
+	        this.color = color;
+	    }
+
+
+	    public String getColor() {    	    // Getter method
+	        return color;
+	    }
+
+	    // Abstraction: Method to calculate and print area (abstracting the details
+
+	    public void printArea() {
+	        System.out.println("Area calculation is not defined for a generic shape.");
+	    }
+	}
+
+
+	class Circle extends Shape {   	       // Inheritance: Circle is a subclass of Shape
+	   
+	    private double radius;             // Encapsulation: Private instance variable
+   
+
+	    public Circle(String color, double radius) {   // Constructor
+	        super(color); // Call the constructor of the superclass (Shape)
+	        this.radius = radius;
+	    }
+
+	   
+	    public double getRadius() {       // Getter method
+	        return radius;
+	    }
+
+	    // Polymorphism: Overriding the printArea method in the subclass
+
+	    @Override
+	    public void printArea() {
+	        double area = Math.PI * radius * radius;
+	        System.out.println("Circle Area: " + area);
+	    }
+	}
+
+	// Inheritance: Rectangle is a subclass of Shape
+
+	class Rectangle extends Shape {
+	    // Encapsulation: Private instance variables
+	    private double length;
+	    private double width;
+
+	    // Constructor
+
+	    public Rectangle(String color, double length, double width) {
+	        super(color); // Call the constructor of the superclass (Shape)
+	        this.length = length;
+	        this.width = width;
+	    }
+
+	    // Getter methods
+
+	    public double getLength() {
+	        return length;
+	    }
+
+	    public double getWidth() {
+	        return width;
+	    }
+
+	    // Polymorphism: Overriding the printArea method in the subclass
+
+	    @Override
+	    public void printArea() {
+	        double area = length * width;
+	        System.out.println("Rectangle Area: " + area);
+	    }
+	}
+
+	public class OOPDemo {
+	    public static void main(String[] args) {
+
+	        // Creating objects
+
+	        Circle circle = new Circle("Red", 5.0);
+	        Rectangle rectangle = new Rectangle("Blue", 4.0, 6.0);
+
+	        // Accessing properties using getters
+
+	        System.out.println("Circle Color: " + circle.getColor());
+	        System.out.println("Circle Radius: " + circle.getRadius());
+	        System.out.println("Rectangle Color: " + rectangle.getColor());
+	        System.out.println("Rectangle Length: " + rectangle.getLength());
+	        System.out.println("Rectangle Width: " + rectangle.getWidth());
+
+	        // Using polymorphism to call printArea method
+
+	        circle.printArea();
+	        rectangle.printArea();
+	    }
+	}
+
+
+
