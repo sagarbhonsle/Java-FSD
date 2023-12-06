@@ -1,0 +1,39 @@
+// Java program to find the sum of n number of elements in the range //
+
+
+package sample;
+
+public class SumInRange {
+
+	    public static int findSum(int[] arr, int n, int l, int r) {
+	        int sum = 0;
+
+	        // Check for valid range
+
+	        if (l < 0 || r >= n || l > r) {
+	            System.out.println("Invalid range");
+	            return -1;
+	        }
+
+	        // Loop through the elements in the range and add them
+
+	        for (int i = l; i <= r; i++) {
+	            sum += arr[i];
+	        }
+
+	        return sum;
+	    }
+
+	    public static void main(String[] args) {
+	        int[] arr = {1, 2, 3, 4, 5};
+	        int n = arr.length;
+	        int l = 0;
+	        int r = 4;
+
+	        int sum = findSum(arr, n, l, r);
+
+	        if (sum != -1) {
+	            System.out.println("Sum of elements in range " + l + " to " + r + " is: " + sum);
+	        }
+	    }
+	}
