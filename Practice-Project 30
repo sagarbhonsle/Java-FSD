@@ -1,0 +1,29 @@
+// Java Program to insert and Delete elements in Stack //
+
+package sample;
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+
+        // Create a stack
+
+        Stack<Integer> stack = new Stack<>();
+
+        // Insert elements into the stack
+
+        System.out.println("Inserting elements into the stack:");
+        for (int i = 1; i <= 5; i++) {
+            stack.push(i);
+            System.out.println("Inserted: " + i);
+        }
+
+        // Remove elements from the stack
+
+        System.out.println("\nRemoving elements from the stack:");
+        while (!stack.isEmpty()) {
+            int removedElement = stack.pop();
+            System.out.println("Removed: " + removedElement);
+        }
+    }
+}
