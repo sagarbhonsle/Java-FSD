@@ -1,0 +1,29 @@
+// Java Program to perform Insertion and Deletion in Queue //
+
+package sample;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueExample {
+    public static void main(String[] args) {
+       
+        Queue<Integer> queue = new LinkedList<>();             // Create a queue
+
+        // Insert elements into the queue
+
+        System.out.println("Inserting elements into the queue:");
+        for (int i = 1; i <= 5; i++) {
+            queue.offer(i);
+            System.out.println("Inserted: " + i);
+        }
+
+        // Remove elements from the queue
+
+        System.out.println("\nRemoving elements from the queue:");
+        while (!queue.isEmpty()) {
+            int removedElement = queue.poll();
+            System.out.println("Removed: " + removedElement);
+        }
+    }
+}
