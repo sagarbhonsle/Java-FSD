@@ -1,0 +1,398 @@
+// JAVA PROGRAM TO CREATE A MOVIE TICKET BOOKING SIMULATOR //
+
+
+
+package sample;
+
+import java.util.*;
+
+class Seat {
+    private boolean isBooked;
+
+    public Seat() {
+        this.isBooked = false;
+    }
+
+    public boolean isBooked() {
+        return isBooked;
+    }
+
+    public void book() {
+        isBooked = true;
+    }
+}
+
+class Movie {
+    private String title;
+    private List<String> showTimes;
+    private double ticketPrice;
+    private Map<String, List<String>> bookingDates;
+
+    public Movie(String title, List<String> showTimes, double ticketPrice) {
+        this.title = title;
+        this.showTimes = showTimes;
+        this.ticketPrice = ticketPrice;
+        this.bookingDates = new HashMap<>(); 
+        
+        // Adding sample booking dates for each movie
+        
+        this.bookingDates.put("2023-12-01", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-02", Arrays.asList("Matinee", "Evening"));
+        this.bookingDates.put("2023-12-03", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-04", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-05", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-06", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-07", Arrays.asList("Morning", "Afternoon", "Evening"));
+        this.bookingDates.put("2023-12-08", Arrays.asList("Morning", "Afternoon", "Evening"));    
+    }
+
+    
+    public Map<String, List<String>> getBookingDates() {
+        return bookingDates;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public List<String> getShowTimes() {
+        return showTimes;
+    }
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+}
+
+class SeatingArrangement {
+    private final int DEFAULT_NUMBER_OF_SEATS = 30;
+    private int numberOfSeats;
+    private Seat[] firstClassSeats;
+    private Seat[] goldClassSeats;
+
+    public SeatingArrangement() {
+        this.numberOfSeats = DEFAULT_NUMBER_OF_SEATS;
+        this.firstClassSeats = new Seat[numberOfSeats];
+        this.goldClassSeats = new Seat[numberOfSeats];
+
+        for (int i = 0; i < numberOfSeats; i++) {
+            firstClassSeats[i] = new Seat();
+            goldClassSeats[i] = new Seat();
+        }
+    }
+
+    public Seat[] getFirstClassSeats() {
+        return firstClassSeats;
+    }
+
+    public Seat[] getGoldClassSeats() {
+        return goldClassSeats;
+    }
+
+    public void resetSeats() {
+        for (int i = 0; i < numberOfSeats; i++) {
+            firstClassSeats[i] = new Seat();
+            goldClassSeats[i] = new Seat();
+        }
+    }
+}
+
+
+class FrontDesk {
+    private String username;
+    private String password;
+    private double walletBalance;
+    private String lastSelectedMovie = "";
+    private SeatingArrangement seatingArrangement;
+    List<Movie> movies;
+    
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+        System.out.println("Password updated successfully.");
+    }
+
+    public void viewBookingDates(String selectedMovie) {
+        Movie movie = findMovie(selectedMovie);
+        if (movie != null) {
+            System.out.println("Booking Dates for " + selectedMovie + ":");
+            for (Map.Entry<String, List<String>> entry : movie.getBookingDates().entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        } else {
+            System.out.println("Movie not found.");
+        }
+    }
+    
+    public FrontDesk(String username, String password, double initialWalletBalance) {
+        this.username = username;
+        this.password = password;
+        this.walletBalance = initialWalletBalance;
+        this.seatingArrangement = new SeatingArrangement();
+        this.movies = new ArrayList<>();
+
+        // Adding sample movies
+        
+        List<String> showTimes = Arrays.asList("10:00 AM", "3:00 PM", "6:00 PM");
+        Movie movie1 = new Movie("Animal", showTimes, 10.0);
+        Movie movie2 = new Movie("KGF", showTimes, 12.0);
+        Movie movie3 = new Movie("Jhon Wick", showTimes, 12.0);
+        Movie movie4 = new Movie("Avatar", showTimes, 12.0);
+        Movie movie5 = new Movie("James Bond", showTimes, 12.0);
+
+        movies.add(movie1);
+        movies.add(movie2);
+        movies.add(movie3);
+        movies.add(movie4);
+        movies.add(movie5);
+
+    }
+
+    public double getWalletBalance() {
+    	 System.out.println("Wallet Balance: $" + walletBalance);
+        return walletBalance;
+    }
+
+    public void depositToWallet(double amount) {
+        walletBalance += amount;
+        System.out.println("Amount deposited successfully. Current wallet balance: $" + walletBalance);
+    }
+    
+    public boolean login(String enteredUsername, String enteredPassword) {
+        if (username.equals(enteredUsername) && password.equals(enteredPassword)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void viewSeatingArrangement() {
+        System.out.println("Seating Arrangement - First Class:");
+        displaySeats(seatingArrangement.getFirstClassSeats());
+
+        System.out.println("Seating Arrangement - Gold Class:");
+        displaySeats(seatingArrangement.getGoldClassSeats());
+    }
+    
+    private void displaySeats(Seat[] seats) {
+        for (int i = 0; i < seats.length; i++) {
+            System.out.print((i + 1) + ": " + (seats[i].isBooked() ? "B " : "A "));
+        }
+        System.out.println(); // Move to the next line for better display
+    }
+
+    public void bookTicket(int seatNumber, String selectedMovie, String selectedShowTime, String selectedDate, int numberOfTickets, String seatClass) {
+        Movie movie = findMovie(selectedMovie);
+        List<Integer> selectedSeats = new ArrayList<>();
+        if (movie != null) {
+        	 if (!selectedMovie.equals(lastSelectedMovie)) {
+                 // Reset seat arrangement only if the movie changes
+                 seatingArrangement.resetSeats();
+             }
+
+        	List<String> showTimesForDate = movie.getBookingDates().get(selectedDate);
+        	Seat[] seats;
+            if ("FirstClass".equalsIgnoreCase(seatClass)) {
+                seats = seatingArrangement.getFirstClassSeats();
+            } else if ("GoldClass".equalsIgnoreCase(seatClass)) {
+                seats = seatingArrangement.getGoldClassSeats();
+            } else {
+                System.out.println("Invalid seat class. Please choose FirstClass or GoldClass.");
+                return;
+            }
+            System.out.println(); // Move to the next line for better display
+
+            Scanner scanner = new Scanner(System.in);
+            
+
+            for (int i = 0; i < numberOfTickets; i++) {
+                System.out.println("Enter the seat number for ticket " + (i + 1) + " (e.g., 1st seat, 2nd seat):");
+                String seatNumberInput = scanner.nextLine().toLowerCase();
+
+                int seatIndex = getSeatIndexFromInput(seatNumberInput);
+                if (seatIndex >= 0 && seatIndex < seats.length && !seats[seatIndex].isBooked()) {
+                    seats[seatIndex].book();
+                    selectedSeats.add(seatIndex + 1); // Add 1 to convert from index to seat number
+                    System.out.println("Ticket " + (i + 1) + " booked successfully for seat " + seatNumberInput);
+                } else {
+                    System.out.println("Invalid seat number or seat already booked. Please choose another seat.");
+                    i--; // Decrement i to re-enter the seat number
+                }
+            }
+            
+
+double totalPrice = movie.getTicketPrice() * numberOfTickets;
+            
+            if (walletBalance >= totalPrice) {
+                // Deduct ticket price from wallet balance
+                walletBalance -= totalPrice;
+                
+                System.out.println("*******************************************************");
+                System.out.println("*             🎉 Tickets booked successfully! 🎉       *");
+                System.out.println("*******************************************************");
+                System.out.println("**   Movie: " + movie.getTitle() +"                                   **");
+                System.out.println("**   Show Time:" + selectedShowTime +"                              **");
+                System.out.println("**   Selected Seats: " + selectedSeats +"                             **");
+                System.out.println("**   Class: " + seatClass +"                               **");
+                System.out.println("**   Total Price: $" + totalPrice +"                              **");
+                System.out.println("**   Remaining Wallet Balance: $" + walletBalance +"                 **");
+                System.out.println("*******************************************************");
+
+            } else {
+                System.out.println("Insufficient funds. Please deposit money to your wallet.");
+            }
+            // Update the last selected movie
+            lastSelectedMovie = selectedMovie;
+        } 
+        else {
+            System.out.println("Movie not found.");
+        }
+    }
+    
+
+    private int getSeatIndexFromInput(String seatNumberInput) {
+        // Extract numeric part from the input, e.g., "1st seat" -> "1"
+        String seatNumberString = seatNumberInput.replaceAll("\\D+", "");
+        try {
+            return Integer.parseInt(seatNumberString) - 1; // Subtract 1 to convert from seat number to index
+        } catch (NumberFormatException e) {
+            return -1; // Invalid input
+        }
+    }
+
+    public void checkBookingStatus() {
+        Seat[] firstClassSeats = seatingArrangement.getFirstClassSeats();
+        Seat[] goldClassSeats = seatingArrangement.getGoldClassSeats();
+
+        System.out.println("Booking status - First Class:");
+        displaySeats(firstClassSeats);
+
+        System.out.println("Booking status - Gold Class:");
+        displaySeats(goldClassSeats);
+    }
+  
+
+    public Movie findMovie(String title) {
+        for (Movie movie : movies) {
+            if (movie.getTitle().equals(title)) {
+                return movie;
+            }
+        }
+        return null;
+    }
+}
+
+
+public class MovieTicketBookingSimulator {
+    public static void main(String[] args) {
+    	
+    	 System.out.println("**********************************************");
+         System.out.println("\tWelcome to Movie Ticket Booking System");
+         System.out.println("**********************************************");
+         
+        // Initialization
+         FrontDesk frontDesk = new FrontDesk("sagar", "sagar123", 100.0);
+        // Example usage of booking tickets and checking booking status
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter username:");
+        String username = scanner.nextLine();
+
+        System.out.println("Enter password:");
+        String password = scanner.nextLine();
+
+        if (frontDesk.login(username, password)) {
+            System.out.println("Login successful!");
+
+            while (true) {
+                System.out.println("1. View Seating Arrangement");
+                System.out.println("2. Book a Ticket");
+                System.out.println("3. Check Booking Status");
+                System.out.println("4. Check Wallet Balance");
+                System.out.println("5. Add Money to wallet");
+                System.out.println("6. Update Password");
+                System.out.println("7. Exit");
+
+                System.out.println("Enter your choice:");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        frontDesk.viewSeatingArrangement();
+                        break;
+                    case 2:
+                        // Display movie list
+                        System.out.println("Movies available:");
+                        for (Movie movie : frontDesk.movies) {
+                            System.out.println(movie.getTitle());
+                        }
+
+                        System.out.println("Enter the movie you want to watch:");
+                        scanner.nextLine(); // Consume newline
+                        String selectedMovie = scanner.nextLine();
+
+                        // Display show times for the selected movie
+                        Movie movie = frontDesk.findMovie(selectedMovie);
+                        if (movie != null) {
+                            System.out.println("Show Times for " + selectedMovie + ":");
+                            for (String showTime : movie.getShowTimes()) {
+                                System.out.println(showTime);
+                            }
+
+                            System.out.println("Enter the show time:");
+                            String selectedShowTime = scanner.nextLine();
+                            System.out.println("Available dates for " + selectedMovie + ":");
+                            for (String date : movie.getBookingDates().keySet()) {
+                                System.out.println(date);
+                            }
+
+                            System.out.println("Enter the date:");
+                            String selectedDate = scanner.next();
+                            // Enter seat number and number of tickets
+                            System.out.println("Enter the number of seats you want to book:");
+                            int seatNumber = scanner.nextInt();
+                            
+                            String seatClass;
+                            System.out.println("Enter the seat class (FirstClass or GoldClass):");
+                            seatClass = scanner.next();
+
+                            System.out.println("Enter the number of tickets:");
+                            int numberOfTickets = scanner.nextInt();
+
+                            frontDesk.bookTicket(seatNumber, selectedMovie, selectedShowTime, selectedDate, numberOfTickets, seatClass);
+                        } else {
+                            System.out.println("Movie not found.");
+                        }
+                        break;
+                    case 3:
+                        frontDesk.checkBookingStatus();
+                        break;
+                    case 4:
+                    	frontDesk.getWalletBalance();
+                    	break;
+                    case 5:
+                    	
+                    	System.out.println("Enter the amount to deposit:");
+                        double amount = scanner.nextDouble();
+                        frontDesk.depositToWallet(amount);
+                        break;
+                        
+                    case 6:
+                        System.out.println("Enter the new password:");
+                        scanner.nextLine(); // Consume newline
+                        String newPassword = scanner.nextLine();
+                        frontDesk.updatePassword(newPassword);
+                        break;
+                    case 7:
+                        System.out.println("Exited");
+                        scanner.close();
+                        System.exit(0);
+                    default:
+                        System.out.println("Invalid choice. Please enter a valid option.");
+                }
+            }
+        } else {
+            System.out.println("Invalid username or password. Exiting...");
+            scanner.close();
+        }
+    }
+}
