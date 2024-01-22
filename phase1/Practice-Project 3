@@ -1,0 +1,23 @@
+// Java Program to Convert Data Types (Implicit Type Casting)//
+
+import java.util.Scanner;
+public class ImplicitExample
+{
+
+ public static void main(String[] args)
+
+ {
+
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter the Value of X:"); //takes input from the user 
+ 	int x = sc.nextInt();
+  long y	= x; //automatically converts the integer type into long type 
+	float z = y; //automatically converts the long type into float type 
+
+ System.out.println("Before conversion the value of X is : "+x);
+ System.out.println("After conversion the int value of y is : "+y);
+ System.out.println("After conversion the float value of z is : "+z);
+
+ }
+
+} 
