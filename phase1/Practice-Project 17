@@ -1,6 +1,6 @@
 // Java Program to Demonstrate Exception Handling //
 
-package sample;
+package sample; 
 import java.util.Scanner;
 
 public class ExceptionHandling {
