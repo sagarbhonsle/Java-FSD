@@ -1,6 +1,5 @@
 // Java Program to perform Merge Sort //
 
-
 package sample;
 
 public class MergeSort {
