@@ -1,6 +1,5 @@
 // Java Program to Delete Key Element in LInked LIst // 
 
-
 package sample;
 
 class Node {
