@@ -1,9 +1,6 @@
 //  Java prgram  to right rotate an array by 5 steps // 
 
 
-
-
-
 package sample;
 
 public class RotateArray {
