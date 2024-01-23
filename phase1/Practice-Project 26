@@ -1,6 +1,5 @@
 // Java Program to Multiply the Two matrices //
 
-
 package sample;
 
 public class Matrix {
