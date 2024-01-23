@@ -1,6 +1,7 @@
 // JAVA PROGRAM TO CREATE A MOVIE TICKET BOOKING SIMULATOR //
 
 
+
 package sample;
 
 import java.util.*;
