@@ -1,4 +1,4 @@
-// Java Program to Validate the Email //
+ // Java Program to Validate the Email //
 
 package sample;
 import java.util.regex.Matcher;

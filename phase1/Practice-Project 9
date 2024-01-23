@@ -1,6 +1,6 @@
 // Java Program to Implement Types of Constructor // 
 
-package sample;
+package sample; 
 
 public class Constructor {
 

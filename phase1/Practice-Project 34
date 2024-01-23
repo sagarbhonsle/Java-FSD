@@ -1,7 +1,7 @@
 // Java Program to Perform Exponential Search //
 
 
-package sample;
+package sample; 
 
 public class ExponentialSearch {
 	    public static void main(String[] args) {

@@ -1,7 +1,7 @@
 // Java Program to insert and Delete elements in Stack //
 
 package sample;
-import java.util.Stack;
+import java.util.Stack; 
 
 public class StackExample {
     public static void main(String[] args) {

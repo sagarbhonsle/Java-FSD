@@ -4,7 +4,7 @@ package sample;
 
 public class ThreadDemo {
 
-	    public static void main(String[] args) {
+	    public static void main(String[] args) { 
 
 	        // Thread using Thread class extension
 

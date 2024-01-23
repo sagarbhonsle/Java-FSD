@@ -1,6 +1,6 @@
 // Java Ptogram to Demonstrate Sleep() and Wait() // 
 
-package sample;
+package sample; 
 
 public class SleepWaitDemo {
 

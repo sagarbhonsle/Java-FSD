@@ -1,6 +1,5 @@
 // Java Program to perform Binary Search //
 
-
 package sample;
 
 public class BinarySearch {

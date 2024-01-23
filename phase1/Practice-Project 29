@@ -1,7 +1,5 @@
 // Java Program to traverse a Doubly Linked List //
 
-
-
 package sample;
 
  class Node2 {

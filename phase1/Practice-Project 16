@@ -2,7 +2,7 @@
 
 package sample;
 
-public class Synchronize {
+public class Synchronize { 
 
 	    private int count;
 
