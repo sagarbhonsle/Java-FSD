@@ -1,6 +1,5 @@
 // Java program to find the sum of n number of elements in the range //
 
-
 package sample;
 
 public class SumInRange {
