@@ -1,6 +1,5 @@
 // Java Program to Perform Quick Sort //
 
-
 package sample;
 
 public class QuickSort {
