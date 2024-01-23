@@ -1,6 +1,5 @@
 // Java Program to perform Insertion Sort //
 
-
 package sample;
 
 public class InsertionSort {
